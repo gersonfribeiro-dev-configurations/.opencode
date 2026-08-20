@@ -15,11 +15,11 @@
       "command": [
         "~/.tools/pencil-mcp.bat",
         "--app",
-        "desktop",
+        "desktop", // "visual_studio_code",
         "--agent",
         "openCodeCLI"
       ],
-      "enabled": true
+      "enabled": true,
     },
     "context7": {
       "type": "remote",
