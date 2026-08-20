@@ -36,23 +36,27 @@ Para compreender a totalidade da arquitetura, consulte as documentações comple
 
 ### .envrc
 
-A configuração padrão de cada MCP é feita de forma global permitindo sobreescritas por meio do arquivo .envrc que deve ser encontrado na raiz de cada projeto, com exceção do MCP do Github, que precisa de um PAT por escopo, já que estes são recomendados de serem usados no formato Fine-grained, dando permissões estritas ao MCP, inclusive a de acessos a repositórios.
+A configuração padrão de cada MCP é feita de forma global permitindo sobreescritas por meio do arquivo .envrc que deve-se encontrar na raiz de cada projeto, com exceção do MCP do Github, que precisa de um PAT por escopo, já que estes são recomendados de serem usados no formato Fine-grained, dando permissões estritas ao MCP, inclusive a de acessos a repositórios.
 
 #### Como configurar o arquivo .envrc?
 
 Crie o arquivo na raiz do projeto e adicione esse conteúdo
 
-```ts
+```bash
 export GITHUB_PERSONAL_ACCESS_TOKEN=$VARIAVEL_PROJETO
 ```
 
-Para ter ainda mais segurança, você pode criar diversos PAT's, um para cada escopo, organização ou permissões que deseja fornecer ao MCP. Dessa forma não teremos um hardcode de PAT em cada projeto, pois esse arquivo .envrc geralmente é versionado.
+Para ter ainda mais segurança, você pode criar diversos PAT's, um para cada escopo, organização ou permissões que deseja fornecer ao MCP. Dessa forma não teremos um hardcode de PAT em cada projeto.
+
+* **O Cuidado:** Se você colocar o valor real do seu PAT diretamente no `.envrc` (ex: `export GITHUB_PERSONAL_ACCESS_TOKEN="github_pat_12345"`), esse arquivo jamais deve ser versionado. Ele precisa ir imediatamente para o `.gitignore`.
+
+* **A Solução Elegante:** O padrão da indústria é versionar um arquivo de exemplo vazio (chamado `.envrc.exemple` com `export GITHUB_PERSONAL_ACCESS_TOKEN=""`) e instruir os outros desenvolvedores a criarem seus próprios `.envrc` locais que serão ignorados pelo Git. O `.envrc` real fica de fora do controle de versão para não vazar o Fine-grained PAT.
 
 #### Sobreescritas
 
 A nossa configuração para o MCP do Toolkit também funciona permitindo a sobreescrita de profiles, ela assume o default carregando as variáveis de ambiente mas se dentro do .envrc tiver um outro valor, ela sobreescreve, aqui não precisa de variáveis de ambiente pois a segurança do profile depende de uma autenticação OAuth no Docker Desktop e afins.
 
-```ts
+```bash
 export PROFILE_TOOLKIT=profile_diferente_do_default
 ```
 
