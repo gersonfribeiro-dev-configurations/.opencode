@@ -36,7 +36,8 @@
       "oauth": false,
       "headers": {
         "Authorization": "Bearer {env:GITHUB_PERSONAL_ACCESS_TOKEN}",
-        "X-MCP-Toolsets": "all"
+        "X-MCP-Toolsets": "all",
+        "X-MCP-Insiders": "true"
       }
     },
     "MCP_DOCKER": {
