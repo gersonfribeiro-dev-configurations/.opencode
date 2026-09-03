@@ -1,25 +1,8 @@
-// gk-managed:{"events":["permission.asked","permission.replied","session.compacted","session.created","session.deleted","session.error","session.idle","session.status","session.updated","tool.execute.after","tool.execute.before"],"executable":"%LOCALAPPDATA%/GitKrakenCLI/gk.exe"}
+// gk-managed:{"events":["permission.asked","permission.replied","session.compacted","session.created","session.deleted","session.error","session.idle","session.status","session.updated","tool.execute.after","tool.execute.before"],"executable":"C:/Users/Gerson Ribeiro/AppData/Local/GitKrakenCLI/gk.exe"}
 import { spawn } from "node:child_process";
-import path from "node:path";
-import fs from "node:fs";
 
 const EVENTS = new Set(["permission.asked","permission.replied","session.compacted","session.created","session.deleted","session.error","session.idle","session.status","session.updated","tool.execute.after","tool.execute.before"]);
-function resolveGkExecutable() {
-  const candidates = [];
-  if (process.env.LOCALAPPDATA) candidates.push(path.join(process.env.LOCALAPPDATA, "GitKrakenCLI", "gk.exe"));
-  if (process.env.APPDATA) candidates.push(path.join(process.env.APPDATA, "GitKrakenCLI", "gk.exe"));
-  // Fallback para PATH (funciona em ambas as maquinas se gk estiver no PATH)
-  candidates.push("gk", "gk.exe");
-  for (const c of candidates) {
-    if (c.includes(path.sep) && c !== "gk" && c !== "gk.exe") {
-      try { if (fs.existsSync(c)) return c; } catch (_) {}
-    } else {
-      return c;
-    }
-  }
-  return candidates[0];
-}
-const EXECUTABLE = resolveGkExecutable();
+const EXECUTABLE = "C:/Users/Gerson Ribeiro/AppData/Local/GitKrakenCLI/gk.exe";
 const MAX_HOOK_INPUT_BYTES = 1024 * 1024;
 
 function getString(value) {
