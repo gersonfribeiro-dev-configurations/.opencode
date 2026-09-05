@@ -40,6 +40,17 @@
 				"X-MCP-Insiders": "true",
 			},
 		},
+		"GitKraken": {
+			"type":    "local",
+			"command": [
+				"gk.exe",
+				"mcp",
+				"--host=opencode",
+				"--source=gitlens",
+				"--scheme=vscode",
+			],
+			"enabled": true
+		},
 		"MCP_DOCKER": {
 			"type": "local",
 			"command": [
@@ -51,17 +62,6 @@
 				"{env:PROFILE_TOOLKIT}",
 			],
 			"enabled": true,
-		},
-		"GitKraken": {
-			"command": [
-				"c:\\Users\\gerso\\AppData\\Roaming\\Code\\User\\globalStorage\\eamodio.gitlens\\gk.exe",
-				"mcp",
-				"--host=opencode",
-				"--source=gitlens",
-				"--scheme=vscode",
-			],
-			"enabled": true,
-			"type":    "local",
 		},
 	},
 }
